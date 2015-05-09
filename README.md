@@ -1,4 +1,4 @@
-Johnlui 的 Swift On iOS 代码仓库
+JohnLui 的 Swift On iOS 代码仓库
 --
 
 iOS 开发知识大多为点状分布，比较难成体系。本 repo 将保存我的那些无法成系列文章的示例代码，给她们一个温暖的家。
