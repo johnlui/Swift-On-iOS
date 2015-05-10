@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4630F70C1AFDEE4300071357 /* Second.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4630F70B1AFDEE4300071357 /* Second.storyboard */; };
+		464401071AFF59C9001F085E /* Button.xib in Resources */ = {isa = PBXBuildFile; fileRef = 464401061AFF59C9001F085E /* Button.xib */; };
 		468268571AFCDC1700CC0A62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468268561AFCDC1700CC0A62 /* AppDelegate.swift */; };
 		468268591AFCDC1700CC0A62 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468268581AFCDC1700CC0A62 /* ViewController.swift */; };
 		4682685C1AFCDC1700CC0A62 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4682685A1AFCDC1700CC0A62 /* Main.storyboard */; };
@@ -28,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		4630F70B1AFDEE4300071357 /* Second.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Second.storyboard; sourceTree = "<group>"; };
+		464401061AFF59C9001F085E /* Button.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Button.xib; sourceTree = "<group>"; };
 		468268511AFCDC1700CC0A62 /* DifferentWaysToBuildTheUserInterface.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DifferentWaysToBuildTheUserInterface.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		468268551AFCDC1700CC0A62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		468268561AFCDC1700CC0A62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -58,6 +60,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		464401051AFF59B7001F085E /* xibs */ = {
+			isa = PBXGroup;
+			children = (
+				464401061AFF59C9001F085E /* Button.xib */,
+			);
+			name = xibs;
+			sourceTree = "<group>";
+		};
 		468268481AFCDC1700CC0A62 = {
 			isa = PBXGroup;
 			children = (
@@ -79,6 +89,7 @@
 		468268531AFCDC1700CC0A62 /* DifferentWaysToBuildTheUserInterface */ = {
 			isa = PBXGroup;
 			children = (
+				464401051AFF59B7001F085E /* xibs */,
 				468268561AFCDC1700CC0A62 /* AppDelegate.swift */,
 				468268581AFCDC1700CC0A62 /* ViewController.swift */,
 				4682685A1AFCDC1700CC0A62 /* Main.storyboard */,
@@ -195,6 +206,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				464401071AFF59C9001F085E /* Button.xib in Resources */,
 				4630F70C1AFDEE4300071357 /* Second.storyboard in Resources */,
 				4682685C1AFCDC1700CC0A62 /* Main.storyboard in Resources */,
 				468268611AFCDC1700CC0A62 /* LaunchScreen.xib in Resources */,

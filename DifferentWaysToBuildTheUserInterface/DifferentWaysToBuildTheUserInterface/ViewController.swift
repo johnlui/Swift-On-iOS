@@ -12,7 +12,10 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        let button = NSBundle.mainBundle().loadNibNamed("Button", owner: self, options: nil).first as! UIButton
+        button.center = self.view.center
+        self.view.addSubview(button)
     }
 
     override func didReceiveMemoryWarning() {
@@ -25,6 +28,10 @@ class ViewController: UIViewController {
             .instantiateViewControllerWithIdentifier("First") as! UIViewController
         self.navigationController?.pushViewController(vc, animated: true)
 //        self.presentViewController(vc, animated: true, completion: nil)
+    }
+    
+    @IBAction func centerButtonBeTapped(sender: AnyObject) {
+        println("centerButtonBeTapped")
     }
 
 }
