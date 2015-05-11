@@ -5,11 +5,12 @@ iOS 开发知识大多为点状分布，比较难成体系。本 repo 将保存�
 
 ##文章列表
 
-###一、UI 构建万花筒
+###一、iOS 开发 UI 搭建心得
 
-代码：https://github.com/johnlui/Swift-On-iOS/blob/master/DifferentWaysToBuildTheUserInterface
+[点我直达代码。](https://github.com/johnlui/Swift-On-iOS/blob/master/DifferentWaysToBuildTheUserInterface)
 
-> ####1. [UI 构建万花筒（一）—— StoryBoard](http://lvwenhan.com/ios/452.html)
+> ####1. [iOS 开发 UI 搭建心得（一）—— 驾驭 StoryBoard](http://lvwenhan.com/ios/452.html)
+> ####2. [iOS 开发 UI 搭建心得（二）—— 善用 xib](http://lvwenhan.com/ios/453.html)
 
 
 ##License
