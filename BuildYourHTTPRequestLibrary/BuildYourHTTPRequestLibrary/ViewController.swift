@@ -21,15 +21,10 @@ class ViewController: UIViewController {
     }
 
     @IBAction func mainButtonBeTapped(sender: AnyObject) {
-        let session = NSURLSession.sharedSession()
-        let request = NSURLRequest(URL: NSURL(string: "http://baidu.com")!)
-        let task = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
-            println("just wait for 5 seconds!")
-            sleep(5)
+        Network.request("POST", url: "http://pitayaswift.sinaapp.com/pitaya.php", params: ["post": "Network"]) { (data, response, error) -> Void in
             let string = NSString(data: data, encoding: NSUTF8StringEncoding)
             println(string)
-        })
-        task.resume()
+        }
     }
 
 }

@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>CAC7FCA6-585B-46EF-ACE4-DA3B61DF321C</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>BuildYourHTTPRequestLibrary</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>03AD7DF3D7364946A0586E0BE3EE422D655B389D</key>
 		<string>github.com:johnlui/Swift-On-iOS.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>BuildYourHTTPRequestLibrary/BuildYourHTTPRequestLibrary.xcodeproj/project.xcworkspace</string>
+	<string>BuildYourHTTPRequestLibrary/BuildYourHTTPRequestLibrary.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>03AD7DF3D7364946A0586E0BE3EE422D655B389D</key>

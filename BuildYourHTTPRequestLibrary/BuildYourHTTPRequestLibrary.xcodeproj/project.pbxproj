@@ -13,6 +13,7 @@
 		463BF7461B0B299300D669DE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 463BF7451B0B299300D669DE /* Images.xcassets */; };
 		463BF7491B0B299300D669DE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 463BF7471B0B299300D669DE /* LaunchScreen.xib */; };
 		463BF7551B0B299300D669DE /* BuildYourHTTPRequestLibraryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BF7541B0B299300D669DE /* BuildYourHTTPRequestLibraryTests.swift */; };
+		46A0D2331B0C60760075F8E1 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A0D2321B0C60760075F8E1 /* Network.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		463BF74E1B0B299300D669DE /* BuildYourHTTPRequestLibraryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BuildYourHTTPRequestLibraryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		463BF7531B0B299300D669DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		463BF7541B0B299300D669DE /* BuildYourHTTPRequestLibraryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildYourHTTPRequestLibraryTests.swift; sourceTree = "<group>"; };
+		46A0D2321B0C60760075F8E1 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				463BF7451B0B299300D669DE /* Images.xcassets */,
 				463BF7471B0B299300D669DE /* LaunchScreen.xib */,
 				463BF73C1B0B299300D669DE /* Supporting Files */,
+				46A0D2321B0C60760075F8E1 /* Network.swift */,
 			);
 			path = BuildYourHTTPRequestLibrary;
 			sourceTree = "<group>";
@@ -214,6 +217,7 @@
 			files = (
 				463BF7411B0B299300D669DE /* ViewController.swift in Sources */,
 				463BF73F1B0B299300D669DE /* AppDelegate.swift in Sources */,
+				46A0D2331B0C60760075F8E1 /* Network.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,6 +413,7 @@
 				463BF75A1B0B299300D669DE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		463BF75B1B0B299300D669DE /* Build configuration list for PBXNativeTarget "BuildYourHTTPRequestLibraryTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +422,7 @@
 				463BF75D1B0B299300D669DE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
