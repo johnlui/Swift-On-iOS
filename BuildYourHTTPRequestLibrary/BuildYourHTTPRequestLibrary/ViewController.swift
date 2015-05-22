@@ -21,9 +21,27 @@ class ViewController: UIViewController {
     }
 
     @IBAction func mainButtonBeTapped(sender: AnyObject) {
-        Network.request("POST", url: "http://pitayaswift.sinaapp.com/pitaya.php", params: ["post": "Network"]) { (data, response, error) -> Void in
-            let string = NSString(data: data, encoding: NSUTF8StringEncoding)
-            println(string)
+        let url = "http://pitayaswift.sinaapp.com/pitaya.php"
+        
+        Network.post(url, callback: { (data, response, error) -> Void in
+            println("POST 1 请求成功")
+        })
+        Network.post(url, params: ["post": "POST Network"], callback: { (data, response, error) -> Void in
+            let string = NSString(data: data, encoding: NSUTF8StringEncoding) as! String
+            println("POST 2 请求成功 " + string)
+        })
+        
+        Network.get(url, callback: { (data, response, error) -> Void in
+            println("GET 1 请求成功")
+        })
+        Network.get(url, params: ["get": "POST Network"], callback: { (data, response, error) -> Void in
+            let string = NSString(data: data, encoding: NSUTF8StringEncoding) as! String
+            println("GET 2 请求成功 " + string)
+        })
+        
+        Network.request("GET", url: url, params: ["get": "Request Network"]) { (data, response, error) -> Void in
+            let string = NSString(data: data, encoding: NSUTF8StringEncoding) as! String
+            println("Request 请求成功 " + string)
         }
     }
 

@@ -9,28 +9,84 @@
 import Foundation
 
 class Network{
+    static func get(url: String, callback: (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void) {
+        let manager = NetworkManager(url: url, method: "GET", callback: callback)
+        manager.fire()
+    }
+    static func get(url: String, params: Dictionary<String, AnyObject>, callback: (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void) {
+        let manager = NetworkManager(url: url, method: "GET", params: params, callback: callback)
+        manager.fire()
+    }
+    static func post(url: String, callback: (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void) {
+        let manager = NetworkManager(url: url, method: "POST", callback: callback)
+        manager.fire()
+    }
+    static func post(url: String, params: Dictionary<String, AnyObject>, callback: (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void) {
+        let manager = NetworkManager(url: url, method: "POST", params: params, callback: callback)
+        manager.fire()
+    }
+    static func request(method: String, url: String, callback: (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void) {
+        let manager = NetworkManager(url: url, method: method, callback: callback)
+        manager.fire()
+    }
     static func request(method: String, url: String, params: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>(), callback: (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void) {
-        let session = NSURLSession.sharedSession()
-        
-        var newURL = url
-        if method == "GET" {
-            newURL += "?" + Network().buildParams(params)
+        let manager = NetworkManager(url: url, method: method, params: params, callback: callback)
+        manager.fire()
+    }
+}
+
+extension String {
+    var nsdata: NSData {
+        return self.dataUsingEncoding(NSUTF8StringEncoding)!
+    }
+}
+
+class NetworkManager {
+    
+    let method: String!
+    let params: Dictionary<String, AnyObject>
+    let callback: (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void
+    
+    let session = NSURLSession.sharedSession()
+    let url: String!
+    var request: NSMutableURLRequest!
+    var task: NSURLSessionTask!
+    
+    init(url: String, method: String, params: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>(), callback: (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void) {
+        self.url = url
+        self.request = NSMutableURLRequest(URL: NSURL(string: url)!)
+        self.method = method
+        self.params = params
+        self.callback = callback
+    }
+    func fire() {
+        buildRequest()
+        buildBody()
+        fireTask()
+    }
+
+    func buildRequest() {
+        if self.method == "GET" && self.params.count > 0 {
+            self.request = NSMutableURLRequest(URL: NSURL(string: url + "?" + buildParams(self.params))!)
         }
         
-        let request = NSMutableURLRequest(URL: NSURL(string: newURL)!)
-        request.HTTPMethod = method
+        request.HTTPMethod = self.method
         
-        if method == "POST" {
+        if self.params.count > 0 {
             request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-            request.HTTPBody = Network().buildParams(params).dataUsingEncoding(NSUTF8StringEncoding)
         }
-        
-        let task = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
-            callback(data: data, response: response , error: error)
+    }
+    func buildBody() {
+        if self.params.count > 0 && self.method != "GET" {
+            request.HTTPBody = buildParams(self.params).nsdata
+        }
+    }
+    func fireTask() {
+        task = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+            self.callback(data: data, response: response, error: error)
         })
         task.resume()
     }
-    
     // 从 Alamofire 偷了三个函数
     func buildParams(parameters: [String: AnyObject]) -> String {
         var components: [(String, String)] = []
