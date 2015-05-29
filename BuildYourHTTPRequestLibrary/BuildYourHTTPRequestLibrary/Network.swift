@@ -29,8 +29,16 @@ class Network{
         let manager = NetworkManager(url: url, method: method, callback: callback)
         manager.fire()
     }
-    static func request(method: String, url: String, params: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>(), callback: (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void) {
+    static func request(method: String, url: String, params: Dictionary<String, AnyObject>, callback: (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void) {
         let manager = NetworkManager(url: url, method: method, params: params, callback: callback)
+        manager.fire()
+    }
+    static func request(method: String, url: String, files: Array<File>, callback: (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void) {
+        let manager = NetworkManager(url: url, method: method, files: files, callback: callback)
+        manager.fire()
+    }
+    static func request(method: String, url: String, params: Dictionary<String, AnyObject>, files: Array<File>, callback: (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void) {
+        let manager = NetworkManager(url: url, method: method, params: params, files: files, callback: callback)
         manager.fire()
     }
 }
@@ -41,23 +49,35 @@ extension String {
     }
 }
 
+public struct File {
+    let name: String!
+    let url: NSURL!
+    public init(name: String, url: NSURL) {
+        self.name = name
+        self.url = url
+    }
+}
+
 class NetworkManager {
+    let boundary = "PitayaUGl0YXlh"
     
     let method: String!
     let params: Dictionary<String, AnyObject>
     let callback: (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void
+    var files: Array<File>
     
     let session = NSURLSession.sharedSession()
     let url: String!
     var request: NSMutableURLRequest!
     var task: NSURLSessionTask!
     
-    init(url: String, method: String, params: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>(), callback: (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void) {
+    init(url: String, method: String, params: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>(), files: Array<File> = Array<File>(), callback: (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void) {
         self.url = url
         self.request = NSMutableURLRequest(URL: NSURL(string: url)!)
         self.method = method
         self.params = params
         self.callback = callback
+        self.files = files
     }
     func fire() {
         buildRequest()
@@ -72,14 +92,36 @@ class NetworkManager {
         
         request.HTTPMethod = self.method
         
-        if self.params.count > 0 {
+        if self.files.count > 0 {
+            request.addValue("multipart/form-data; boundary=" + self.boundary, forHTTPHeaderField: "Content-Type")
+        } else if self.params.count > 0 {
             request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         }
     }
     func buildBody() {
-        if self.params.count > 0 && self.method != "GET" {
-            request.HTTPBody = buildParams(self.params).nsdata
+        let data = NSMutableData()
+        if self.files.count > 0 {
+            if self.method == "GET" {
+                NSLog("\n\n------------------------\nThe remote server may not accept GET method with HTTP body. But Pitaya will send it anyway.\n------------------------\n\n")
+            }
+            for (key, value) in self.params {
+                data.appendData("--\(self.boundary)\r\n".nsdata)
+                data.appendData("Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n".nsdata)
+                data.appendData("\(value.description)\r\n".nsdata)
+            }
+            for file in self.files {
+                data.appendData("--\(self.boundary)\r\n".nsdata)
+                data.appendData("Content-Disposition: form-data; name=\"\(file.name)\"; filename=\"\(file.url.description.lastPathComponent)\"\r\n\r\n".nsdata)
+                if let a = NSData(contentsOfURL: file.url) {
+                    data.appendData(a)
+                    data.appendData("\r\n".nsdata)
+                }
+            }
+            data.appendData("--\(self.boundary)--\r\n".nsdata)
+        } else if self.params.count > 0 && self.method != "GET" {
+            data.appendData(buildParams(self.params).nsdata)
         }
+        request.HTTPBody = data
     }
     func fireTask() {
         task = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in

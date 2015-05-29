@@ -43,6 +43,14 @@ class ViewController: UIViewController {
             let string = NSString(data: data, encoding: NSUTF8StringEncoding) as! String
             println("Request 请求成功 " + string)
         }
+        
+        let file = File(name: "file", url: NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("Pitaya", ofType: "png")!)!)
+        Network.request("POST", url: "http://pitayaswift.sinaapp.com/pitaya.php", files: [file]) { (data, response, error) -> Void in
+            let string = NSString(data: data, encoding: NSUTF8StringEncoding) as! String
+            if string == "1" {
+                println("上传文件成功！")
+            }
+        }
     }
 
 }
