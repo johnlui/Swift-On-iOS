@@ -49,10 +49,10 @@ extension String {
     }
 }
 
-public struct File {
+struct File {
     let name: String!
     let url: NSURL!
-    public init(name: String, url: NSURL) {
+    init(name: String, url: NSURL) {
         self.name = name
         self.url = url
     }
