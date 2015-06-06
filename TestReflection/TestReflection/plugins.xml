@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugins>
+    <item name="Console">
+        <param name="ios-package" value="ConsoleClass" />
+    </item>
+    <item name="Haohaowan">
+        <param name="ios-package" value="HaohaowanClass" />
+    </item>
+</plugins>
