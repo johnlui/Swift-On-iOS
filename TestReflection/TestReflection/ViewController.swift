@@ -68,25 +68,6 @@ class ViewController: UIViewController, WKScriptMessageHandler, NSXMLParserDeleg
         }
     }
     
-    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        if let a = request.URL?.description {
-            if a.substringToIndex(advance(a.startIndex, 6)) == "gap://" {
-                println("获取到 gap:// 协议！")
-                let string = a.substringFromIndex(advance(a.startIndex, 6))
-                
-                if let plugin = self.pluginsDictionary[string] {
-                    if let cls = NSClassFromString(NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleName")!.description + "." + plugin.className) as? Console.Type{
-                        let obj = cls(string: string)
-                    }
-                } else {
-                    NSLog("反射失败！插件名：\(string)")
-                }
-                return false
-            }
-        }
-        return true
-    }
-    
     func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [NSObject : AnyObject]) {
         if elementName == "item" {
             if let name = attributeDict["name"]?.description {
