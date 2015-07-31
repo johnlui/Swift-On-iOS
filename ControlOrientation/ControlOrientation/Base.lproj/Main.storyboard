@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8164.2" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="TbV-xW-rqd">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8135.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ControlOrientation" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zab-hK-dzJ">
+                                <rect key="frame" x="263" y="285" width="75" height="30"/>
+                                <state key="normal" title="打开新页面"/>
+                                <connections>
+                                    <action selector="openNewVC:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jzj-zv-qJC"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="zab-hK-dzJ" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Wv9-qb-fZc"/>
+                            <constraint firstItem="zab-hK-dzJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ea9-3d-BOf"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="ieD-mR-1sx"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1377" y="372"/>
+        </scene>
+        <!--Second View Controller-->
+        <scene sceneID="gvo-bf-l0Z">
+            <objects>
+                <viewController storyboardIdentifier="secondVC" id="3TJ-uD-KZP" customClass="SecondViewController" customModule="ControlOrientation" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="09t-BO-Oph"/>
+                        <viewControllerLayoutGuide type="bottom" id="gIa-y9-0iO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="w0I-r0-xny">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k0f-Pl-fH2">
+                                <rect key="frame" x="20" y="28" width="30" height="30"/>
+                                <state key="normal" title="退出"/>
+                                <connections>
+                                    <action selector="dismissSelfVC:" destination="3TJ-uD-KZP" eventType="touchUpInside" id="5p8-5V-M3K"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="k0f-Pl-fH2" firstAttribute="leading" secondItem="w0I-r0-xny" secondAttribute="leadingMargin" id="QuA-qp-YbM"/>
+                            <constraint firstItem="k0f-Pl-fH2" firstAttribute="top" secondItem="09t-BO-Oph" secondAttribute="bottom" constant="8" symbolic="YES" id="Ub6-ao-S99"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uAW-UY-C8g" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2056" y="372"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="8Uh-PA-oPY">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zrM-2v-oiw" customClass="NavigationController" customModule="ControlOrientation" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="2fh-N1-cem"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Qys-t6-PNZ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="DVk-27-zFc"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ojx-Cr-n2K" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1453" y="-320"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="isu-5P-cW2">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="TbV-xW-rqd" customClass="TabBarController" customModule="ControlOrientation" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="XO9-ng-V8g">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="zrM-2v-oiw" kind="relationship" relationship="viewControllers" id="fZ6-40-bMj"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IHf-hX-TdR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="641" y="-320"/>
+        </scene>
+    </scenes>
+</document>
