@@ -28,6 +28,7 @@ iOS 开发知识大多为点状分布，比较难成体系。本 repo 将保存�
 WKWebView 惨无人道，一句话完成 js 向 native 层传值，逼死 Cordova 的节奏。
 
 ###四、如何用代码控制以不同屏幕方向打开新页面
+####要求 Xcode 7 / Swift 2.0
 
 [点我直达代码](https://github.com/johnlui/Swift-On-iOS/tree/master/ControlOrientation/ControlOrientation)
 
