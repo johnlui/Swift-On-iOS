@@ -34,6 +34,14 @@ WKWebView 惨无人道，一句话完成 js 向 native 层传值，逼死 Cordov
 
 > #### [如何用代码控制以不同屏幕方向打开新页面](http://lvwenhan.com/ios/458.html)
 
+
+###五、自己动手构建表单验证功能
+####要求 Xcode 7 / Swift 2.0
+
+[点我直达代码](https://github.com/johnlui/Swift-On-iOS/tree/master/EasyFormValidator/EasyFormValidator)
+
+> #### [自己动手构建表单验证功能【iOS】](http://lvwenhan.com/ios/459.html)
+
 ##License
 
 此项目下所有代码均基于 MIT license 开源。
