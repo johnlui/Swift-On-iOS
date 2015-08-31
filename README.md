@@ -42,6 +42,14 @@ WKWebView 惨无人道，一句话完成 js 向 native 层传值，逼死 Cordov
 
 > #### [自己动手构建表单验证功能【iOS】](http://lvwenhan.com/ios/459.html)
 
+
+###六、自己动手打造基于 WKWebView 的混合开发框架
+####要求 Xcode 7 beta 6 / Swift 2.0
+
+[点我直达代码](https://github.com/johnlui/Swift-On-iOS/tree/master/BuildYourOwnHybridDevelopmentFramework/BuildYourOwnHybridDevelopmentFramework)
+
+> ####1. [自己动手打造基于 WKWebView 的混合开发框架（一）——WKWebView 上手](http://lvwenhan.com/ios/460.html)
+
 ##License
 
 此项目下所有代码均基于 MIT license 开源。
