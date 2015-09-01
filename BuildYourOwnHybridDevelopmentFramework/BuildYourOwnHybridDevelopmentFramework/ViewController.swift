@@ -9,7 +9,7 @@
 import UIKit
 import WebKit
 
-class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
+class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate, WKScriptMessageHandler {
     
     var wk: WKWebView!
 
@@ -24,8 +24,11 @@ class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+
+        let conf = WKWebViewConfiguration()
+        conf.userContentController.addScriptMessageHandler(self, name: "OOXX")
         
-        self.wk = WKWebView(frame: self.view.frame)
+        self.wk = WKWebView(frame: self.view.frame, configuration: conf)
         self.wk.navigationDelegate = self
         self.wk.UIDelegate = self
         self.wk.loadRequest(NSURLRequest(URL: NSURL(string: "http://www.baidu.com/")!))
@@ -55,5 +58,35 @@ extension wkUIDelegate {
             completionHandler()
         }))
         self.presentViewController(ac, animated: true, completion: nil)
+    }
+}
+
+private typealias wkScriptMessageHandler = ViewController
+extension wkScriptMessageHandler {
+    
+    func userContentController(userContentController: WKUserContentController, didReceiveScriptMessage message: WKScriptMessage) {
+        if message.name == "OOXX" {
+            if let dic = message.body as? NSDictionary,
+                className = dic["className"]?.description,
+                functionName = dic["functionName"]?.description {
+                if let cls = NSClassFromString(NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleName")!.description + "." + className) as? NSObject.Type{
+                    let obj = cls.init()
+                    let functionSelector = Selector(functionName)
+                    if obj.respondsToSelector(functionSelector) {
+                        obj.performSelector(functionSelector)
+                    } else {
+                        print("方法未找到！")
+                    }
+                } else {
+                    print("类未找到！")
+                }
+            }
+        }
+    }
+}
+
+class Callme: NSObject {
+    func maybe() {
+        print("反射成功！")
     }
 }
