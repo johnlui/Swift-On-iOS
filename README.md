@@ -49,6 +49,8 @@ WKWebView 惨无人道，一句话完成 js 向 native 层传值，逼死 Cordov
 [点我直达代码](https://github.com/johnlui/Swift-On-iOS/tree/master/BuildYourOwnHybridDevelopmentFramework/BuildYourOwnHybridDevelopmentFramework)
 
 > ####1. [自己动手打造基于 WKWebView 的混合开发框架（一）——WKWebView 上手](http://lvwenhan.com/ios/460.html)
+> ####2. [自己动手打造基于 WKWebView 的混合开发框架（二）——js 向 Native 一句话传值并反射出 Swift 对象执行指定函数](http://lvwenhan.com/ios/461.html)
+> ####3. [自己动手打造基于 WKWebView 的混合开发框架（三）——设计插件协议以兼容 Cordova](http://lvwenhan.com/ios/462.html)
 
 ##License
 

@@ -13,6 +13,9 @@
 		C8B932871B94C45F007DDEBB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8B932861B94C45F007DDEBB /* Assets.xcassets */; };
 		C8B9328A1B94C45F007DDEBB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8B932881B94C45F007DDEBB /* LaunchScreen.storyboard */; };
 		C8B932951B94C45F007DDEBB /* BuildYourOwnHybridDevelopmentFrameworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B932941B94C45F007DDEBB /* BuildYourOwnHybridDevelopmentFrameworkTests.swift */; };
+		C8C797B41B98280000669516 /* www in Resources */ = {isa = PBXBuildFile; fileRef = C8C797B31B98280000669516 /* www */; settings = {ASSET_TAGS = (); }; };
+		C8C797B61B98317500669516 /* Console.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C797B51B98317500669516 /* Console.swift */; settings = {ASSET_TAGS = (); }; };
+		C8C797B81B9831D600669516 /* Accelerometer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C797B71B9831D600669516 /* Accelerometer.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +39,9 @@
 		C8B932901B94C45F007DDEBB /* BuildYourOwnHybridDevelopmentFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BuildYourOwnHybridDevelopmentFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8B932941B94C45F007DDEBB /* BuildYourOwnHybridDevelopmentFrameworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildYourOwnHybridDevelopmentFrameworkTests.swift; sourceTree = "<group>"; };
 		C8B932961B94C45F007DDEBB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C8C797B31B98280000669516 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
+		C8C797B51B98317500669516 /* Console.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Console.swift; sourceTree = "<group>"; };
+		C8C797B71B9831D600669516 /* Accelerometer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Accelerometer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +65,7 @@
 		C8B932731B94C45F007DDEBB = {
 			isa = PBXGroup;
 			children = (
+				C8C797B31B98280000669516 /* www */,
 				C8B9327E1B94C45F007DDEBB /* BuildYourOwnHybridDevelopmentFramework */,
 				C8B932931B94C45F007DDEBB /* BuildYourOwnHybridDevelopmentFrameworkTests */,
 				C8B9327D1B94C45F007DDEBB /* Products */,
@@ -79,6 +86,8 @@
 			children = (
 				C8B9327F1B94C45F007DDEBB /* AppDelegate.swift */,
 				C8B932811B94C45F007DDEBB /* ViewController.swift */,
+				C8C797B51B98317500669516 /* Console.swift */,
+				C8C797B71B9831D600669516 /* Accelerometer.swift */,
 				C8B932831B94C45F007DDEBB /* Main.storyboard */,
 				C8B932861B94C45F007DDEBB /* Assets.xcassets */,
 				C8B932881B94C45F007DDEBB /* LaunchScreen.storyboard */,
@@ -178,6 +187,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8C797B41B98280000669516 /* www in Resources */,
 				C8B9328A1B94C45F007DDEBB /* LaunchScreen.storyboard in Resources */,
 				C8B932871B94C45F007DDEBB /* Assets.xcassets in Resources */,
 				C8B932851B94C45F007DDEBB /* Main.storyboard in Resources */,
@@ -199,6 +209,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C8B932821B94C45F007DDEBB /* ViewController.swift in Sources */,
+				C8C797B81B9831D600669516 /* Accelerometer.swift in Sources */,
+				C8C797B61B98317500669516 /* Console.swift in Sources */,
 				C8B932801B94C45F007DDEBB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -277,7 +289,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -316,7 +328,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -389,6 +401,7 @@
 				C8B9329B1B94C45F007DDEBB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C8B9329C1B94C45F007DDEBB /* Build configuration list for PBXNativeTarget "BuildYourOwnHybridDevelopmentFrameworkTests" */ = {
 			isa = XCConfigurationList;
@@ -397,6 +410,7 @@
 				C8B9329E1B94C45F007DDEBB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

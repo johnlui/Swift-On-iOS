@@ -32,9 +32,24 @@ class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate, WKSc
         self.wk.navigationDelegate = self
         self.wk.UIDelegate = self
         self.wk.loadRequest(NSURLRequest(URL: NSURL(string: "http://www.baidu.com/")!))
+        
+        self.runPluginJS(["Base", "Console", "Accelerometer"])
+        
         self.view.addSubview(self.wk)
     }
-
+    
+    func runPluginJS(names: Array<String>) {
+        for name in names {
+            if let path = NSBundle.mainBundle().pathForResource(name, ofType: "js", inDirectory: "www/plugins") {
+                do {
+                    let js = try NSString(contentsOfFile: path, encoding: NSUTF8StringEncoding)
+                    self.wk.evaluateJavaScript(js as String, completionHandler: nil)
+                } catch let error as NSError {
+                    NSLog(error.debugDescription)
+                }
+            }
+        }
+    }
 
 }
 
@@ -69,8 +84,11 @@ extension wkScriptMessageHandler {
             if let dic = message.body as? NSDictionary,
                 className = dic["className"]?.description,
                 functionName = dic["functionName"]?.description {
-                if let cls = NSClassFromString(NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleName")!.description + "." + className) as? NSObject.Type{
+                if let cls = NSClassFromString(NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleName")!.description + "." + className) as? Plugin.Type{
                     let obj = cls.init()
+                    obj.wk = self.wk
+                    obj.taskId = dic["taskId"]?.integerValue
+                    obj.data = dic["data"]?.description
                     let functionSelector = Selector(functionName)
                     if obj.respondsToSelector(functionSelector) {
                         obj.performSelector(functionSelector)
@@ -85,8 +103,28 @@ extension wkScriptMessageHandler {
     }
 }
 
-class Callme: NSObject {
-    func maybe() {
-        print("反射成功！")
+class Plugin: NSObject {
+    var wk: WKWebView!
+    var taskId: Int!
+    var data: String?
+    required override init() {
+    }
+    func callback(values: NSDictionary) -> Bool {
+        do {
+            let jsonData = try NSJSONSerialization.dataWithJSONObject(values, options: NSJSONWritingOptions())
+            if let jsonString = NSString(data: jsonData, encoding: NSUTF8StringEncoding) as? String {
+                let js = "fireTask(\(self.taskId), '\(jsonString)');"
+                self.wk.evaluateJavaScript(js, completionHandler: nil)
+                return true
+            }
+        } catch let error as NSError{
+            NSLog(error.debugDescription)
+            return false
+        }
+        return false
+    }
+    func errorCallback(errorMessage: String) {
+        let js = "onError(\(self.taskId), '\(errorMessage)');"
+        self.wk.evaluateJavaScript(js, completionHandler: nil)
     }
 }
