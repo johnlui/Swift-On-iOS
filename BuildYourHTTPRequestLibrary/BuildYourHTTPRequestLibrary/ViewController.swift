@@ -21,6 +21,20 @@ class ViewController: UIViewController {
     }
 
     @IBAction func mainButtonBeTapped(sender: AnyObject) {
+        let network = NetworkManager(url: "https://www.baidu.com/", method: "GET") { (data, response, error) -> Void in
+            if let _ = error {
+                NSLog(error.description)
+            } else {
+                print("证书正确！")
+            }
+        }
+        let certData = NSData(contentsOfFile: NSBundle.mainBundle().pathForResource("lvwenhancom", ofType: "cer")!)!
+        network.addSSLPinning(LocalCertData: certData) { () -> Void in
+            print("SSL 证书错误，遭受中间人攻击！")
+        }
+        network.fire()
+        
+        
         let url = "http://staticonsae.sinaapp.com/pitaya.php"
         
         Network.post(url, callback: { (data, response, error) -> Void in

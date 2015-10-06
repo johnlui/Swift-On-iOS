@@ -58,7 +58,7 @@ struct File {
     }
 }
 
-class NetworkManager {
+class NetworkManager: NSObject, NSURLSessionDelegate {
     let boundary = "PitayaUGl0YXlh"
     
     let method: String!
@@ -66,10 +66,13 @@ class NetworkManager {
     let callback: (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void
     var files: Array<File>
     
-    let session = NSURLSession.sharedSession()
+    var session: NSURLSession!
     let url: String!
     var request: NSMutableURLRequest!
     var task: NSURLSessionTask!
+    
+    var localCertData: NSData!
+    var sSLValidateErrorCallBack: (() -> Void)?
     
     init(url: String, method: String, params: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>(), files: Array<File> = Array<File>(), callback: (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void) {
         self.url = url
@@ -78,6 +81,34 @@ class NetworkManager {
         self.params = params
         self.callback = callback
         self.files = files
+        
+        super.init()
+        self.session = NSURLSession(configuration: NSURLSession.sharedSession().configuration, delegate: self, delegateQueue: NSURLSession.sharedSession().delegateQueue)
+    }
+    func addSSLPinning(LocalCertData data: NSData, SSLValidateErrorCallBack: (()->Void)? = nil) {
+        self.localCertData = data
+        self.sSLValidateErrorCallBack = SSLValidateErrorCallBack
+    }
+    @objc func URLSession(session: NSURLSession, didReceiveChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential?) -> Void) {
+        if let localCertificateData = self.localCertData {
+            if let serverTrust = challenge.protectionSpace.serverTrust,
+                certificate = SecTrustGetCertificateAtIndex(serverTrust, 0),
+                remoteCertificateData: NSData = SecCertificateCopyData(certificate) {
+                    if localCertificateData.isEqualToData(remoteCertificateData) {
+                        let credential = NSURLCredential(forTrust: serverTrust)
+                        challenge.sender?.useCredential(credential, forAuthenticationChallenge: challenge)
+                        completionHandler(NSURLSessionAuthChallengeDisposition.UseCredential, credential)
+                    } else {
+                        challenge.sender?.cancelAuthenticationChallenge(challenge)
+                        completionHandler(NSURLSessionAuthChallengeDisposition.CancelAuthenticationChallenge, nil)
+                        self.sSLValidateErrorCallBack?()
+                    }
+            } else {
+                NSLog("Get RemoteCertificateData or LocalCertificateData error!")
+            }
+        } else {
+            completionHandler(NSURLSessionAuthChallengeDisposition.UseCredential, nil)
+        }
     }
     func fire() {
         buildRequest()
