@@ -25,13 +25,13 @@ class ViewController: UIViewController {
 
     @IBAction func gotoSecondStoryboardButtonBeTapped(sender: AnyObject) {
         let vc = UIStoryboard(name: "Second", bundle: nil)
-            .instantiateViewControllerWithIdentifier("First") as! UIViewController
+            .instantiateViewControllerWithIdentifier("First") 
         self.navigationController?.pushViewController(vc, animated: true)
 //        self.presentViewController(vc, animated: true, completion: nil)
     }
     
     @IBAction func centerButtonBeTapped(sender: AnyObject) {
-        println("centerButtonBeTapped")
+        print("centerButtonBeTapped")
     }
 
 }

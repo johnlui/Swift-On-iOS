@@ -3,6 +3,8 @@ JohnLui 的 Swift On iOS 代码仓库
 
 iOS 开发知识大多为点状分布，比较难成体系。本 repo 将保存我的那些无法成系列文章的示例代码，给她们一个温暖的家。
 
+### 环境： Xcode 7 / Swift 2.0
+
 ##文章列表
 
 ###一、iOS 开发 UI 搭建心得
@@ -28,7 +30,6 @@ iOS 开发知识大多为点状分布，比较难成体系。本 repo 将保存�
 WKWebView 惨无人道，一句话完成 js 向 native 层传值，逼死 Cordova 的节奏。
 
 ###四、如何用代码控制以不同屏幕方向打开新页面
-####要求 Xcode 7 / Swift 2.0
 
 [点我直达代码](https://github.com/johnlui/Swift-On-iOS/tree/master/ControlOrientation/ControlOrientation)
 
@@ -36,7 +37,6 @@ WKWebView 惨无人道，一句话完成 js 向 native 层传值，逼死 Cordov
 
 
 ###五、自己动手构建表单验证功能
-####要求 Xcode 7 / Swift 2.0
 
 [点我直达代码](https://github.com/johnlui/Swift-On-iOS/tree/master/EasyFormValidator/EasyFormValidator)
 
@@ -44,7 +44,6 @@ WKWebView 惨无人道，一句话完成 js 向 native 层传值，逼死 Cordov
 
 
 ###六、自己动手打造基于 WKWebView 的混合开发框架
-####要求 Xcode 7 beta 6 / Swift 2.0
 
 [点我直达代码](https://github.com/johnlui/Swift-On-iOS/tree/master/BuildYourOwnHybridDevelopmentFramework/BuildYourOwnHybridDevelopmentFramework)
 

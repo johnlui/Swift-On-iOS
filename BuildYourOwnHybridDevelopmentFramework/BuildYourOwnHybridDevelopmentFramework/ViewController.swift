@@ -25,6 +25,8 @@ class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate, WKSc
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
+        // 初始化代码放在此处 viewDidAppear 中只是一种为了方便演示的妥协方案，不适用于生产环境。
+        // 如果需要应用在生产环境中，请参考：https://github.com/Lucky-Orange/BlackHawk
         let conf = WKWebViewConfiguration()
         conf.userContentController.addScriptMessageHandler(self, name: "OOXX")
         

@@ -111,7 +111,7 @@ class NetworkManager {
             }
             for file in self.files {
                 data.appendData("--\(self.boundary)\r\n".nsdata)
-                data.appendData("Content-Disposition: form-data; name=\"\(file.name)\"; filename=\"\(file.url.description.lastPathComponent)\"\r\n\r\n".nsdata)
+                data.appendData("Content-Disposition: form-data; name=\"\(file.name)\"; filename=\"\(NSString(string: file.url.description).lastPathComponent)\"\r\n\r\n".nsdata)
                 if let a = NSData(contentsOfURL: file.url) {
                     data.appendData(a)
                     data.appendData("\r\n".nsdata)
@@ -132,12 +132,12 @@ class NetworkManager {
     // 从 Alamofire 偷了三个函数
     func buildParams(parameters: [String: AnyObject]) -> String {
         var components: [(String, String)] = []
-        for key in sorted(Array(parameters.keys), <) {
+        for key in Array(parameters.keys).sort(<) {
             let value: AnyObject! = parameters[key]
             components += self.queryComponents(key, value)
         }
         
-        return join("&", components.map{"\($0)=\($1)"} as [String])
+        return (components.map{"\($0)=\($1)"} as [String]).joinWithSeparator("&")
     }
     func queryComponents(key: String, _ value: AnyObject) -> [(String, String)] {
         var components: [(String, String)] = []
@@ -150,7 +150,7 @@ class NetworkManager {
                 components += queryComponents("\(key)", value)
             }
         } else {
-            components.extend([(escape(key), escape("\(value)"))])
+            components.appendContentsOf([(escape(key), escape("\(value)"))])
         }
         
         return components

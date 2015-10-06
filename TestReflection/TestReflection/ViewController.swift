@@ -24,11 +24,10 @@ class ViewController: UIViewController, WKScriptMessageHandler, NSXMLParserDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         if let path = NSBundle.mainBundle().pathForResource("plugins", ofType: "xml") {
-            if let url = NSURL(fileURLWithPath: path) {
-                if let xmlParser = NSXMLParser(contentsOfURL: url) {
-                    xmlParser.delegate = self
-                    xmlParser.parse()
-                }
+            let url = NSURL(fileURLWithPath: path)
+            if let xmlParser = NSXMLParser(contentsOfURL: url) {
+                xmlParser.delegate = self
+                xmlParser.parse()
             }
         }
     }
@@ -41,7 +40,7 @@ class ViewController: UIViewController, WKScriptMessageHandler, NSXMLParserDeleg
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        let request = NSURLRequest(URL: NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("index", ofType: "html", inDirectory: "www")!)!)
+        let request = NSURLRequest(URL: NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("index", ofType: "html", inDirectory: "www")!))
         
         let conf = WKWebViewConfiguration()
         conf.userContentController.addScriptMessageHandler(self, name: "callbackHandler")
@@ -55,12 +54,12 @@ class ViewController: UIViewController, WKScriptMessageHandler, NSXMLParserDeleg
         if(message.name == "callbackHandler") {
             let array = message.body.componentsSeparatedByString("://")
             if array.count == 2 {
-                if let plugin = self.pluginsDictionary[array[0].description] {
+                if let plugin = self.pluginsDictionary[array[0]] {
                     if let cls = NSClassFromString(NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleName")!.description + "." + plugin.className) as? Console.Type{
-                        let obj = cls(string: array[1].description)
+                        let obj = cls.init(string: array[1])
                     }
                 } else {
-                    NSLog("反射失败！类 \(array[0].description) 未找到")
+                    NSLog("反射失败！类 \(array[0]) 未找到")
                 }
             } else {
                 NSLog("反射失败！完整数据：\(message.body)")
@@ -68,13 +67,13 @@ class ViewController: UIViewController, WKScriptMessageHandler, NSXMLParserDeleg
         }
     }
     
-    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [NSObject : AnyObject]) {
+    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
         if elementName == "item" {
-            if let name = attributeDict["name"]?.description {
+            if let name = attributeDict["name"] {
                 self.pluginItemName = name
             }
         } else if self.pluginItemName != "" && elementName == "param" {
-            let plugin = Plugin(name: self.pluginItemName, className: attributeDict["value"]?.description)
+            let plugin = Plugin(name: self.pluginItemName, className: attributeDict["value"])
             self.pluginsDictionary[self.pluginItemName] = plugin
         }
     }
