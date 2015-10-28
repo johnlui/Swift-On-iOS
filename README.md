@@ -52,6 +52,15 @@ WKWebView 惨无人道，一句话完成 js 向 native 层传值，逼死 Cordov
 > ####2. [自己动手打造基于 WKWebView 的混合开发框架（二）——js 向 Native 一句话传值并反射出 Swift 对象执行指定函数](http://lvwenhan.com/ios/461.html)
 > ####3. [自己动手打造基于 WKWebView 的混合开发框架（三）——设计插件协议以兼容 Cordova](http://lvwenhan.com/ios/462.html)
 
+
+
+###七、自己动手造无限循环图片轮播
+
+[点我直达代码](https://github.com/johnlui/Swift-On-iOS/tree/master/InfiniteCarouselScrollView/InfiniteCarouselScrollView)
+
+> #### [自己动手造无限循环图片轮播](https://autolayout.club/2015/10/29/%E8%87%AA%E5%B7%B1%E5%8A%A8%E6%89%8B%E9%80%A0%E6%97%A0%E9%99%90%E5%BE%AA%E7%8E%AF%E5%9B%BE%E7%89%87%E8%BD%AE%E6%92%AD/)
+
+
 ##License
 
 此项目下所有代码均基于 MIT license 开源。
